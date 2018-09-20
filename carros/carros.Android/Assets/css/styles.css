@@ -1,0 +1,10 @@
+﻿contentpage {
+    background-color: lightgray;
+}
+
+.label-preco {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: large;
+}

@@ -1,0 +1,21 @@
+﻿^contentpage {
+    background-color: lightgray;
+}
+
+#listaVeiculos {
+    margin: 15;
+}
+
+.label-item {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+}
+.label-preco {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: large;
+    text-align: center;
+}
