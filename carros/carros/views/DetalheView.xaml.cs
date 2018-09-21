@@ -12,15 +12,18 @@ namespace carros.views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalheView : ContentPage
 	{
-        private Veiculo Veiculo { get; set; }
+        public Veiculo Veiculo { get; set; }
 
 		public DetalheView (Veiculo veiculo)
 		{
+            InitializeComponent();
             this.Veiculo = veiculo;
             this.Veiculo.Acessorios = this.InicializaAcessorios();
             this.Title = veiculo.Fabricante + " - " + veiculo.Nome;
+            this.Veiculo.ValorTotal = this.Veiculo.Preco;
+            this.txtValorTotal.Text = "Total " + this.Veiculo.ValorTotal.ToString("C2");
             this.BindingContext = this.Veiculo;
-            InitializeComponent();
+            
         }
 
         private List<Acessorio> InicializaAcessorios()
@@ -38,5 +41,12 @@ namespace carros.views
         {
             Navigation.PushAsync(new AgendamentoView(this.Veiculo));
         }
+
+        private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+        {
+            this.Veiculo.ValorTotal = this.Veiculo.Preco + this.Veiculo.Acessorios.Where(a => a.Ativo).Sum(v => v.Valor);
+            this.txtValorTotal.Text = "Total " + this.Veiculo.ValorTotal.ToString("C2");
+        }
+
     }
 }

@@ -4,9 +4,23 @@
              x:Class="carros.views.AgendamentoView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <TableView Intent="Form">
+                <TableRoot>
+                    <TableSection Title="Seus Dados">
+                        <EntryCell Label="Nome: " Text="{Binding Nome}"></EntryCell>
+                        <EntryCell Label="Telefone: " Keyboard="Telephone" Text="{Binding Telefone}"></EntryCell>
+                        <EntryCell Label="E-mail: " Keyboard="Email" Text="{Binding Email}"></EntryCell>
+                    </TableSection>
+                    <TableSection Title="Agendamento">
+                        <ViewCell>
+                            <DatePicker></DatePicker>
+                        </ViewCell>
+                        <ViewCell>
+                            <TimePicker></TimePicker>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

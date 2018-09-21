@@ -37,15 +37,16 @@ namespace carros.views
         }
     }
 
-    public class Veiculo
+    public class Veiculo //: BindableObject
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public string Fabricante { get; set; }
         public List<Acessorio> Acessorios { get; set; }
+        public decimal ValorTotal { get; set; }
     }
 
-    public class Acessorio
+    public class Acessorio //: BindableObject
     {
         public string Nome { get; set; }
         public decimal Valor { get; set; }
