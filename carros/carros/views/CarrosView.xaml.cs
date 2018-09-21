@@ -42,5 +42,19 @@ namespace carros.views
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public string Fabricante { get; set; }
+        public List<Acessorio> Acessorios { get; set; }
+    }
+
+    public class Acessorio
+    {
+        public string Nome { get; set; }
+        public decimal Valor { get; set; }
+        public bool Ativo { get; set; }
+        public string AcessorioValorado
+        { get
+            {
+                return string.Format("{0} - {1}", this.Nome, this.Valor.ToString("C2"));
+            }
+        }
     }
 }

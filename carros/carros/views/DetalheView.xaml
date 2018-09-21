@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="carros.views.DetalheView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Aqui você irá selecionar os acessórios que deseja incluir no seu veículo"  VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="25">
+            <TableView Intent="Settings"  >
+                <TableRoot>
+                    <TableSection Title="Acessórios">
+                        <SwitchCell Text="{Binding AcessorioValorado}" On="{Binding Ativo}" ></SwitchCell>
+                        <TextCell Text="Total de Acessórios"></TextCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            <Button x:Name="btnProsseguir" Text="Prosseguir" Clicked="btnProsseguir_Clicked" VerticalOptions="End"></Button>
         </StackLayout>
     </ContentPage.Content>
-    <Button x:Name="btnProsseguir" Text="Prosseguir" Clicked="btnProsseguir_Clicked" VerticalOptions="End"></Button>
 </ContentPage>
