@@ -13,14 +13,21 @@
                     </TableSection>
                     <TableSection Title="Agendamento">
                         <ViewCell>
-                            <DatePicker></DatePicker>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="15,0,0,0">
+                                <Label Text="Data:"></Label>
+                                <DatePicker HorizontalOptions="End" Date="{Binding Data}" MinimumDate="{Binding DateTime.Now}"></DatePicker>
+                            </StackLayout>
                         </ViewCell>
                         <ViewCell>
-                            <TimePicker></TimePicker>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="15,0,0,0">
+                                <Label Text="Hora:"></Label>
+                                <TimePicker  Time="{Binding Hora}"></TimePicker>
+                            </StackLayout>
                         </ViewCell>
                     </TableSection>
                 </TableRoot>
             </TableView>
+            <Button Text="Agendar" Clicked="Button_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

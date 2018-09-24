@@ -21,7 +21,12 @@ namespace carros.views
             this.Form.Veiculo = veiculo;
             this.BindingContext = this.Form;
         }
-	}
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 
     public class AgendamentoForm
     {
@@ -31,5 +36,10 @@ namespace carros.views
         public DateTime Data { get; set; }
         public TimeSpan Hora { get; set; }
         public Veiculo Veiculo { get; set; }
+
+        public AgendamentoForm()
+        {
+            this.Data = DateTime.Today;
+        }
     }
 }

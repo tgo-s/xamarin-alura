@@ -6,24 +6,6 @@
         <StackLayout Padding="25">
             <TableView Intent="Settings">
                 <TableRoot>
-                    <TableSection Title="Acessórios ListView">
-                        <ViewCell>
-                            <StackLayout>
-                                <ListView ItemsSource="{Binding Acessorios}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding AcessorioValorado}"></Label>
-                                                    <Switch IsToggled="{Binding Ativo}" Toggled="SwitchCell_OnChanged"></Switch>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackLayout>
-                        </ViewCell>
-                    </TableSection>
                     <TableSection Title="Acessórios">
                         <SwitchCell Text="{Binding Acessorios[0].AcessorioValorado}" On="{Binding Acessorios[0].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
                         <SwitchCell Text="{Binding Acessorios[1].AcessorioValorado}" On="{Binding Acessorios[1].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
