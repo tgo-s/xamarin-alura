@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="carros_2.views.DetalheView"
+             Title="{Binding Titulo}">
+    <ContentPage.Content>
+        <StackLayout Padding="25">
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Acessórios">
+                        <SwitchCell Text="{Binding Veiculo.Acessorios[0].AcessorioValorado}" On="{Binding Veiculo.Acessorios[0].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
+                        <SwitchCell Text="{Binding Veiculo.Acessorios[1].AcessorioValorado}" On="{Binding Veiculo.Acessorios[1].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
+                        <SwitchCell Text="{Binding Veiculo.Acessorios[2].AcessorioValorado}" On="{Binding Veiculo.Acessorios[2].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
+                        <SwitchCell Text="{Binding Veiculo.Acessorios[3].AcessorioValorado}" On="{Binding Veiculo.Acessorios[3].Ativo}" OnChanged="SwitchCell_OnChanged"></SwitchCell>
+                        <TextCell x:Name="txtValorTotal" Text="{Binding TextoValorTotal}"></TextCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            <Button x:Name="btnProsseguir" Text="Prosseguir" Command="{Binding ProsseguirCmd}" VerticalOptions="End"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

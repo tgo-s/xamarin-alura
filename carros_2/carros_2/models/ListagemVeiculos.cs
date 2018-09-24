@@ -1,0 +1,26 @@
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace carros_2.models
+{
+    public class ListagemVeiculos
+    {
+        private const string URL_WEB_SERVER_FOR_CHROME= "http://127.0.0.1:8887/GetListaCarros.html";
+
+        public List<Veiculo> Veiculos { get; set; }
+        public ListagemVeiculos()
+        {
+            // TODO: converter o string em JSON e consequentemente em objeto Veiculo
+            this.Veiculos = new List<Veiculo>();
+        }
+
+        public async Task GetVeiculos(string url)
+        {
+            HttpClient cliente = new HttpClient();
+            string veiculosJson = await cliente.GetStringAsync(URL_WEB_SERVER_FOR_CHROME);
+
+        }
+    }
+}
