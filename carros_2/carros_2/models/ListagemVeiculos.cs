@@ -7,7 +7,7 @@ namespace carros_2.models
 {
     public class ListagemVeiculos
     {
-        private const string URL_WEB_SERVER_FOR_CHROME= "http://dontpad.com/lista-veiculos";
+        private const string URL_WEB_SERVER_FOR_CHROME= "10.0.2.2:8887/GetListaVeiculos.html";
 
         public List<Veiculo> Veiculos { get; set; }
         public ListagemVeiculos()
