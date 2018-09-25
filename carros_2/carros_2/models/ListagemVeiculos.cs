@@ -7,20 +7,23 @@ namespace carros_2.models
 {
     public class ListagemVeiculos
     {
-        private const string URL_WEB_SERVER_FOR_CHROME= "http://127.0.0.1:8887/GetListaCarros.html";
+        private const string URL_WEB_SERVER_FOR_CHROME= "http://dontpad.com/lista-veiculos";
 
         public List<Veiculo> Veiculos { get; set; }
         public ListagemVeiculos()
         {
             // TODO: converter o string em JSON e consequentemente em objeto Veiculo
             this.Veiculos = new List<Veiculo>();
+            Task<List<Veiculo>> t = GetVeiculos();
+            this.Veiculos = t.Result;
         }
 
-        public async Task GetVeiculos(string url)
+        public async Task<List<Veiculo>> GetVeiculos()
         {
             HttpClient cliente = new HttpClient();
             string veiculosJson = await cliente.GetStringAsync(URL_WEB_SERVER_FOR_CHROME);
-
+            List<Veiculo> liVeiculos = JsonConvert.DeserializeObject<List<Veiculo>>(veiculosJson);
+            return liVeiculos;
         }
     }
 }

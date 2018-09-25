@@ -23,6 +23,7 @@ namespace carros_2.viewmodel
         public VeiculoView()
         {
             this.Veiculos = new ListagemVeiculos().Veiculos;
+
         }
     }
 }
