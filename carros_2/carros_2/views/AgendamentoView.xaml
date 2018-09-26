@@ -8,21 +8,21 @@
             <TableView Intent="Form">
                 <TableRoot>
                     <TableSection Title="Seus Dados">
-                        <EntryCell Label="Nome: " Text="{Binding Nome}"></EntryCell>
-                        <EntryCell Label="Telefone: " Keyboard="Telephone" Text="{Binding Telefone}"></EntryCell>
-                        <EntryCell Label="E-mail: " Keyboard="Email" Text="{Binding Email}"></EntryCell>
+                        <EntryCell Label="Nome: " Text="{Binding Agendamento.Nome}"></EntryCell>
+                        <EntryCell Label="Telefone: " Keyboard="Telephone" Text="{Binding Agendamento.Telefone}"></EntryCell>
+                        <EntryCell Label="E-mail: " Keyboard="Email" Text="{Binding Agendamento.Email}"></EntryCell>
                     </TableSection>
                     <TableSection Title="Agendamento">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="15,0,0,0">
                                 <Label Text="Data:"></Label>
-                                <DatePicker HorizontalOptions="End" Date="{Binding Data}" MinimumDate="{Binding DateTime.Now}"></DatePicker>
+                                <DatePicker HorizontalOptions="End" Date="{Binding Agendamento.Data}" MinimumDate="{Binding DateTime.Now}"></DatePicker>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="15,0,0,0">
                                 <Label Text="Hora:"></Label>
-                                <TimePicker  Time="{Binding Hora}"></TimePicker>
+                                <TimePicker  Time="{Binding Agendamento.Hora}"></TimePicker>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>

@@ -14,38 +14,45 @@ namespace carros_2.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AgendamentoView : ContentPage
     {
-        public AgendamentoViewModel Agendamento { get; set; }
+        public AgendamentoViewModel View { get; set; }
         public AgendamentoView(Veiculo veiculo)
         {
             InitializeComponent();
-            this.Agendamento = new AgendamentoViewModel(veiculo);
-            this.BindingContext = this.Agendamento;
+            this.View = new AgendamentoViewModel(veiculo);
+            this.BindingContext = this.View;
         }
 
         protected override void OnAppearing()
         {
-            MessagingCenter.Subscribe<AgendamentoViewModel>(this, "AgendarTestDrive", (agendamento) => 
+            MessagingCenter.Subscribe<AgendamentoViewModel>(this, "AgendarTestDrive", async (view) => 
             {
-                DisplayAlert("Agendamento Confirmado!", string.Format(@"Veículo: {0}
-                                                                        Nome: {1}
-                                                                        Telefone: {2}
-                                                                        E-Mail: {3}
-                                                                        Data: {4}
-                                                                        Horario: {5}", 
-                                                                        agendamento.Veiculo.NomeCompleto,
-                                                                        agendamento.Nome,
-                                                                        agendamento.Telefone,
-                                                                        agendamento.Email,
-                                                                        agendamento.Data,
-                                                                        agendamento.Hora)
-                                                                        , "Ok");
+
+                var confirmacao = await DisplayAlert("Confirmar Agendamento", "Deseja confirmar este agendamento?", "Sim", "Não");
+
+                if (confirmacao)
+                {
+                    await View.MarcarAgendamentoAsync();
+                }
             });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "AgendamentoMarcado", (agendamento) => 
+            {
+                DisplayAlert("Agendamento", "Agendamento marcado com sucesso!", "Ok");
+            });
+
+            MessagingCenter.Subscribe<ArgumentException>(this, "ProblemaAoAgendar", (argEx) =>
+            {
+                DisplayAlert("Agendamento", "Um erro ocorreu ao tentar agendar o test drive", "Ok");
+            });
+
             base.OnAppearing();
         }
 
         protected override void OnDisappearing()
         {
             MessagingCenter.Unsubscribe<AgendamentoViewModel>(this, "AgendarTestDrive");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "AgendamentoMarcado");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "ProblemaAoAgendar");
             base.OnDisappearing();
         }
     }

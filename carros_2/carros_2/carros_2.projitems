@@ -20,12 +20,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)models\Acessorio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)models\Agendamento.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\ListagemAcessorios.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)viewmodel\AgendamentoViewForm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)viewmodel\AgendamentoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Veiculo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)models\ListagemVeiculos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\DetalheVeiculoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\VeiculoView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)viewmodel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)views\AgendamentoView.xaml.cs">
       <DependentUpon>AgendamentoView.xaml</DependentUpon>
       <SubType>Code</SubType>

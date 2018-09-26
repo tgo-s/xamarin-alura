@@ -33,7 +33,14 @@ namespace carros_2.views
         {
             MessagingCenter.Subscribe<Veiculo>(this, "ProsseguirCmd", (veiculo) => 
             {
-                Navigation.PushAsync(new AgendamentoView(veiculo));
+                try
+                {
+                    Navigation.PushAsync(new AgendamentoView(veiculo));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             });
 
             base.OnAppearing();

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="carros_2.views.CarrosView"
              xmlns:ViewModel="clr-namespace:carros_2.viewmodel">
-    
+
 
     <!-- outra forma de implementar viewmodel sem ser atribuindo no code behind (this.BindingContext = viewmodel)-->
     <!-- setar no cabeçalho do ContentPage xmlns:prefixo="namespace_ViewModel" (Exemplo: xmlns:vm="clr-namespace:carros_2.viewmodel") -->
@@ -12,7 +12,7 @@
         <ViewModel:VeiculoView></ViewModel:VeiculoView>
     </ContentPage.BindingContext>
     -->
-    
+
     <!-- Xamarin.Forms 3.0 introduziu a habilidade de usar um estilo no formato CSS ao APP -->
     <ContentPage.Resources>
         <!-- Lembrar de alterar as properties do arquivo para build: EmbeddedResources -->
@@ -20,15 +20,17 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <!-- Remoção do evento ItemTapped e implementação do conceito de comandos através do SelectedItem-->
-        <ListView x:Name="listaVeiculos" ItemsSource="{Binding Veiculos}" SelectedItem="{Binding VeiculoSelecionado}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.View>
-                            <!-- Na versão utilizada durante o curso o elemento span dentro da formatação (Label.FormattedText ...) não aceitava binding -->
-                            <!-- Na versão atual do Xamarin.Forms já é possível obter sucesso com o código abaixo -->
-                            <!--<Label>
+        <StackLayout>
+            <ActivityIndicator IsRunning="{Binding CarregandoLista}" IsVisible="{Binding CarregandoLista}"  Margin="0,150,0,0"></ActivityIndicator>
+            <!-- Remoção do evento ItemTapped e implementação do conceito de comandos através do SelectedItem-->
+            <ListView x:Name="listaVeiculos" ItemsSource="{Binding Veiculos}" SelectedItem="{Binding VeiculoSelecionado}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <!-- Na versão utilizada durante o curso o elemento span dentro da formatação (Label.FormattedText ...) não aceitava binding -->
+                                <!-- Na versão atual do Xamarin.Forms já é possível obter sucesso com o código abaixo -->
+                                <!--<Label>
                             <Label.FormattedText>
                                 <FormattedString >
                                     <FormattedString.Spans>
@@ -42,18 +44,19 @@
                             </Label.FormattedText>
                         </Label>-->
 
-                            <!-- Alternativa que foi proposta na aula seria usar stack layout -->
-                            <StackLayout Orientation="Horizontal">
-                                <Label StyleClass="label-item" Text="{Binding Fabricante}" VerticalTextAlignment="Center"></Label>
-                                <Label VerticalTextAlignment="Center">|</Label>
-                                <Label StyleClass="label-item" Text="{Binding Nome}" VerticalTextAlignment="Center"></Label>
-                                <Label VerticalTextAlignment="Center">|</Label>
-                                <Label Text="{Binding Preco, StringFormat='{0:C2}'}" StyleClass="label-preco" VerticalTextAlignment="Center"></Label>
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <!-- Alternativa que foi proposta na aula seria usar stack layout -->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label StyleClass="label-item" Text="{Binding Fabricante}" VerticalTextAlignment="Center"></Label>
+                                    <Label VerticalTextAlignment="Center">|</Label>
+                                    <Label StyleClass="label-item" Text="{Binding Nome}" VerticalTextAlignment="Center"></Label>
+                                    <Label VerticalTextAlignment="Center">|</Label>
+                                    <Label Text="{Binding Preco, StringFormat='{0:C2}'}" StyleClass="label-preco" VerticalTextAlignment="Center"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

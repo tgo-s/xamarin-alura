@@ -14,12 +14,12 @@ namespace carros_2.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarrosView : ContentPage
     {
-        public VeiculoView Veiculos { get; set; }
+        public VeiculoView View { get; set; }
         public CarrosView()
         {
             InitializeComponent();
-            this.Veiculos = new VeiculoView();
-            this.BindingContext = this.Veiculos;
+            this.View = new VeiculoView();
+            this.BindingContext = this.View;
 
         }
 
@@ -32,12 +32,18 @@ namespace carros_2.views
         // Na implementação da mensageria, que utiliza uma propriedade global do Xamarin.Forms
         // a nossa view irá subscrever a um sistema de mensagens e ficar aguardando por notificações da mesma
         // Faremos isso no lancamento da nossa pagina, antes dela tornar-se visivel
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", (veiculo) =>
              {
                  Navigation.PushAsync((new DetalheView(veiculo)));
              });
+
+            MessagingCenter.Subscribe<Exception>(this, "FalhaGetVeiculos", (ex) => 
+            {
+                DisplayAlert("Erro", "Ocorreu um erro ao tentar obter a lista de veículos. Por favor, tente novamente mais tarde", "OK");
+            });
+            await this.View.GetVeiculos();
             base.OnAppearing();
         }
 
@@ -45,6 +51,7 @@ namespace carros_2.views
         protected override void OnDisappearing()
         {
             MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
+            MessagingCenter.Unsubscribe<Exception>(this, "FalhaGetVeiculos");
             base.OnDisappearing();
         }
     }
