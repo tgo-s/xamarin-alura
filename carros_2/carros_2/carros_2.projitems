@@ -22,9 +22,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)models\Acessorio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Agendamento.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\ListagemAcessorios.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)models\Usuario.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\AgendamentoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Veiculo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\DetalheVeiculoView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)viewmodel\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\VeiculoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)views\AgendamentoView.xaml.cs">
@@ -37,6 +39,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)views\DetalheView.xaml.cs">
       <DependentUpon>DetalheView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -57,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\DetalheView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
