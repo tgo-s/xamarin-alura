@@ -22,7 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)models\Acessorio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Agendamento.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\ListagemAcessorios.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)models\Login.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Usuario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)services\LoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\AgendamentoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Veiculo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\DetalheVeiculoView.cs" />

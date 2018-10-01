@@ -9,9 +9,9 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Margin="64" >
             <Image Source="aluracar.png"></Image>
-            
-            <Entry Text="{Binding Usuario.Login}" Placeholder="Login"></Entry>
-            <Entry Text="{Binding Usuario.Senha}" Placeholder="Senha" IsPassword="{Binding HidePassword}"></Entry>
+
+            <Entry Text="{Binding Login.Usuario}" Placeholder="Login"></Entry>
+            <Entry Text="{Binding Login.Senha}" Placeholder="Senha" IsPassword="{Binding HidePassword}"></Entry>
 
             <Button Text="Entrar" Command="{Binding EntrarCommand}"></Button>
         </StackLayout>
