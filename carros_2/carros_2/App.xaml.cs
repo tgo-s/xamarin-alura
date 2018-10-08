@@ -21,7 +21,8 @@ namespace carros_2
         {
             MessagingCenter.Subscribe<Usuario>(this, "SucessoLogin", (user) => 
             {
-                MainPage = new NavigationPage(new CarrosView());
+                //MainPage = new NavigationPage(new CarrosView());
+                MainPage = new MasterDetailView(user);
             });
             // Handle when your app starts
         }

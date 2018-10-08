@@ -23,8 +23,8 @@ namespace carros_2.services
                 
                 try
                 {
-                    client.BaseAddress = new System.Uri("https://url");
-                     var result = await client.PostAsync("/login", camposForm);
+                    //client.BaseAddress = new System.Uri("http://127.0.0.1:5000/api");
+                     var result = await client.PostAsync("http://127.0.0.1:5000/api/login/auth/", camposForm);
                     if (result.IsSuccessStatusCode)
                         MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
                     else

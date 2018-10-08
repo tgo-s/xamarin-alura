@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)models\Veiculo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\DetalheVeiculoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)viewmodel\MasterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\VeiculoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)views\AgendamentoView.xaml.cs">
@@ -45,6 +46,14 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)views\MasterDetailView.xaml.cs">
+      <DependentUpon>MasterDetailView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)views\MasterView.xaml.cs">
+      <DependentUpon>MasterView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -71,6 +80,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\MasterDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\MasterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -32,9 +32,10 @@ namespace carXapi.Controllers
         //}
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("post")]
+        public string Post([FromBody] string value)
         {
+            return "Retorno Veiculo";
         }
 
         // PUT api/values/5
