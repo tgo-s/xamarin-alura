@@ -1,4 +1,5 @@
 ﻿using carros_2.models;
+using carros_2.util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace carros_2.viewmodel
     {
         // Using WebAPI .Net Core - Don't forget to change the launchSettings file start server on 127.0.0.1
         // Usando o .net core WebAPI - Não esqueça de mudar o arquivo launchSettings para iniciar a aplicação em 127.0.0.1
-        private const string URL_WEB_SERVER_FOR_CHROME = "http://10.0.2.2:5000/api/veiculo/get/lista-veiculos";
+        //private const string URL_WEB_SERVER_FOR_CHROME = "http://10.0.2.2:5000/api/veiculo/get/lista-veiculos";
+        private const string URL_WEB_SERVER_FOR_CHROME = "http://aluracar.herokuapp.com/";
 
         private List<Veiculo> veiculos;
         public List<Veiculo> Veiculos
@@ -68,7 +70,8 @@ namespace carros_2.viewmodel
             CarregandoLista = true;
             try
             {
-                HttpClient cliente = new HttpClient();
+                HttpClientHandler httpClientHandler = new ProxyConfig().CreateSaneparProxyConfig();
+                HttpClient cliente = new HttpClient(httpClientHandler, true);
                 string veiculosJson = await cliente.GetStringAsync(URL_WEB_SERVER_FOR_CHROME);
                 // OservableCollection pode ser usado, especialmente no caso de popular os itens manualmente com .Add() ou .Remove()
                 // neste caso ela irá notificar a view sobre as mudanças automaticamente
