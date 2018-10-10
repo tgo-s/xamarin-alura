@@ -70,7 +70,9 @@ namespace carros_2.viewmodel
             CarregandoLista = true;
             try
             {
-                HttpClientHandler httpClientHandler = new ProxyConfig().CreateSaneparProxyConfig();
+                // Can remove the following line if no proxy is needed
+                HttpClientHandler httpClientHandler = new ProxyConfig().CreateCompanyProxyConfig();
+
                 HttpClient cliente = new HttpClient(httpClientHandler, true);
                 string veiculosJson = await cliente.GetStringAsync(URL_WEB_SERVER_FOR_CHROME);
                 // OservableCollection pode ser usado, especialmente no caso de popular os itens manualmente com .Add() ou .Remove()

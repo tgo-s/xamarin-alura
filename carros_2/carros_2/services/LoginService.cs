@@ -15,7 +15,8 @@ namespace carros_2.services
     {
         public async System.Threading.Tasks.Task FazerLogin(Login login)
         {
-            HttpClientHandler httpClientHandler = new ProxyConfig().CreateSaneparProxyConfig();
+            // Can remove the following line if no proxy is needed
+            HttpClientHandler httpClientHandler = new ProxyConfig().CreateCompanyProxyConfig();
 
             using (HttpClient client = new HttpClient(handler: httpClientHandler, disposeHandler: true))
             {

@@ -1,0 +1,8 @@
+﻿{
+    "Proxy": {
+        "Url": "http://proxyurl.company.com",
+        "Port": "123",
+        "Username": "your_username",
+        "Password":  "#your_pass"
+    }
+}
