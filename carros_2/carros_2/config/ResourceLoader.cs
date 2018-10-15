@@ -54,10 +54,5 @@ namespace carros_2.config
                 return streamReader.ReadToEnd();
             }
         }
-
-        internal static void GetEmbeddedResourceString(object assemby)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
