@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)media\ICamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Acessorio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\Agendamento.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)models\ListagemAcessorios.cs" />

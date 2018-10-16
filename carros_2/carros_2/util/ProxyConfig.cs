@@ -18,23 +18,33 @@ namespace carros_2.util
 
             var config = JsonConvert.DeserializeObject<ConfigModel>(json);
 
-            string uri = config.Proxy.Url + (config.Proxy.Port > 0 ? ":" + config.Proxy.Port : "");
-
-            WebProxy proxy = new WebProxy()
+            if (config.Proxy != null && !string.IsNullOrEmpty(config.Proxy.Url))
             {
-                Address = new Uri(uri),
-                BypassProxyOnLocal = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(
-                            userName: config.Proxy.Username,
-                            password: config.Proxy.Password),
-            };
-            HttpClientHandler httpClientHandler = new HttpClientHandler()
-            {
-                Proxy = proxy,
-            };
 
-            return httpClientHandler;
+                string uri = config.Proxy.Url + (config.Proxy.Port > 0 ? ":" + config.Proxy.Port : "");
+
+                WebProxy proxy = new WebProxy()
+                {
+                    Address = new Uri(uri),
+                    BypassProxyOnLocal = true,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(
+                                userName: config.Proxy.Username,
+                                password: config.Proxy.Password),
+                };
+                HttpClientHandler httpClientHandler = new HttpClientHandler()
+                {
+                    Proxy = proxy,
+                };
+
+                return httpClientHandler;
+            }
+            else
+            {
+                return new HttpClientHandler();
+            }
+
+            
         }
     }
 }
