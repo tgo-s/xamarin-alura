@@ -15,11 +15,13 @@ namespace carros_2.views
     public partial class DetalheView : ContentPage
     {
         public DetalheVeiculoView Detalhe { get; set; }
+        public Usuario Usuario{ get; set; }
 
-        public DetalheView(Veiculo veiculo)
+        public DetalheView(Veiculo veiculo, Usuario usuario)
         {
             InitializeComponent();
             this.Detalhe = new DetalheVeiculoView(veiculo);
+            this.Usuario = usuario;
             this.BindingContext = this.Detalhe;
 
         }
@@ -35,7 +37,7 @@ namespace carros_2.views
             {
                 try
                 {
-                    Navigation.PushAsync(new AgendamentoView(veiculo));
+                    Navigation.PushAsync(new AgendamentoView(veiculo, this.Usuario));
                 }
                 catch (Exception ex)
                 {

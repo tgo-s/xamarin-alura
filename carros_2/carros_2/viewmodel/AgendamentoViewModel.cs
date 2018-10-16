@@ -1,4 +1,5 @@
-﻿using carros_2.models;
+﻿using carros_2.data;
+using carros_2.models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -10,21 +11,21 @@ namespace carros_2.viewmodel
 {
     public class AgendamentoViewModel : ViewModelBase
     {
-        private const string URL_POST_MARCAR_AGENDAMENTO = "http://10.0.2.2:5000/api/agendamento/marcar/";
+        private const string URL_POST_MARCAR_AGENDAMENTO = "http://aluracar.herokuapp.com/salvaragendamento";
 
         public string TituloPagina
         {
             get
             {
-                return Agendamento.Veiculo.Fabricante + " - " + Agendamento.Veiculo.Nome;
+                //return Agendamento.Veiculo.Fabricante + " - " + Agendamento.Veiculo.Nome;
+                return Agendamento.Modelo;
             }
         }
         public ICommand AgendarCmd { get; set; }
         
-        public AgendamentoViewModel(Veiculo veiculo)
+        public AgendamentoViewModel(Veiculo veiculo, Usuario usuario)
         {
-            Agendamento = new Agendamento();
-            Agendamento.Veiculo = veiculo;
+            Agendamento = new Agendamento(usuario.Nome, usuario.Telefone, usuario.Email, veiculo.Nome, veiculo.ValorTotal);
             Agendamento.Data = DateTime.Today;
             AgendarCmd = new Command(() => 
             {
@@ -41,6 +42,8 @@ namespace carros_2.viewmodel
             StringContent agendamentoContent = new StringContent(agendamentoJson.ToString());
             var resposta = await client.PostAsync(URL_POST_MARCAR_AGENDAMENTO, agendamentoContent);
 
+            SalvarAgendamentoData();
+
             if (resposta.IsSuccessStatusCode)
             {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "AgendamentoMarcado");
@@ -49,6 +52,15 @@ namespace carros_2.viewmodel
             {
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "ProblemaAoAgendar");
             }
+        }
+
+        private void SalvarAgendamentoData()
+        {
+            using (var conn = DependencyService.Get<ISQLite>().PegarConexao())
+            {
+                AgendamentoDAO dao = new AgendamentoDAO(conn);
+                dao.Salvar(this.Agendamento);
+            };
         }
     }
 }

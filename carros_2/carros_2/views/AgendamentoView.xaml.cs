@@ -15,16 +15,23 @@ namespace carros_2.views
     public partial class AgendamentoView : ContentPage
     {
         public AgendamentoViewModel View { get; set; }
-        public AgendamentoView(Veiculo veiculo)
+        public AgendamentoView(Veiculo veiculo, Usuario usuario)
         {
             InitializeComponent();
-            this.View = new AgendamentoViewModel(veiculo);
+            this.View = new AgendamentoViewModel(veiculo, usuario);
             this.BindingContext = this.View;
         }
 
         protected override void OnAppearing()
         {
-            MessagingCenter.Subscribe<AgendamentoViewModel>(this, "AgendarTestDrive", async (view) => 
+            AssinarMensagens();
+
+            base.OnAppearing();
+        }
+
+        private void AssinarMensagens()
+        {
+            MessagingCenter.Subscribe<AgendamentoViewModel>(this, "AgendarTestDrive", async (view) =>
             {
 
                 var confirmacao = await DisplayAlert("Confirmar Agendamento", "Deseja confirmar este agendamento?", "Sim", "Não");
@@ -35,25 +42,30 @@ namespace carros_2.views
                 }
             });
 
-            MessagingCenter.Subscribe<Agendamento>(this, "AgendamentoMarcado", (agendamento) => 
+            MessagingCenter.Subscribe<Agendamento>(this, "AgendamentoMarcado", async (agendamento) =>
             {
-                DisplayAlert("Agendamento", "Agendamento marcado com sucesso!", "Ok");
+                await DisplayAlert("Agendamento", "Agendamento marcado com sucesso!", "Ok");
+                await Navigation.PopToRootAsync();
             });
 
-            MessagingCenter.Subscribe<ArgumentException>(this, "ProblemaAoAgendar", (argEx) =>
+            MessagingCenter.Subscribe<ArgumentException>(this, "ProblemaAoAgendar", async (argEx) =>
             {
-                DisplayAlert("Agendamento", "Um erro ocorreu ao tentar agendar o test drive", "Ok");
+                await DisplayAlert("Agendamento", "Um erro ocorreu ao tentar agendar o test drive", "Ok");
+                await Navigation.PopToRootAsync();
             });
-
-            base.OnAppearing();
         }
 
         protected override void OnDisappearing()
         {
+            CancelarAssinatura();
+            base.OnDisappearing();
+        }
+
+        private void CancelarAssinatura()
+        {
             MessagingCenter.Unsubscribe<AgendamentoViewModel>(this, "AgendarTestDrive");
             MessagingCenter.Unsubscribe<Agendamento>(this, "AgendamentoMarcado");
             MessagingCenter.Unsubscribe<ArgumentException>(this, "ProblemaAoAgendar");
-            base.OnDisappearing();
         }
     }
 }

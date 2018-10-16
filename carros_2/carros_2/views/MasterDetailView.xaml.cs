@@ -14,6 +14,8 @@ namespace carros_2.views
             InitializeComponent();
             this.usuario = usuario;
             this.Master = new MasterView(this.usuario);
+            this.Detail = new NavigationPage(new CarrosView(this.usuario));
+
         }
     }
 }

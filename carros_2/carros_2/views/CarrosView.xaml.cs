@@ -14,11 +14,13 @@ namespace carros_2.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarrosView : ContentPage
     {
+        public Usuario Usuario { get; set; }
         public VeiculoView View { get; set; }
-        public CarrosView()
+        public CarrosView(Usuario usuario)
         {
             InitializeComponent();
             this.View = new VeiculoView();
+            this.Usuario = usuario;
             this.BindingContext = this.View;
 
         }
@@ -34,25 +36,35 @@ namespace carros_2.views
         // Faremos isso no lancamento da nossa pagina, antes dela tornar-se visivel
         protected async override void OnAppearing()
         {
-            MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", (veiculo) =>
-             {
-                 Navigation.PushAsync((new DetalheView(veiculo)));
-             });
+            AssinarMensagens();
+            await this.View.GetVeiculos();
+            base.OnAppearing();
+        }
 
-            MessagingCenter.Subscribe<Exception>(this, "FalhaGetVeiculos", (ex) => 
+        private void AssinarMensagens()
+        {
+            MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", (veiculo) =>
+            {
+                Navigation.PushAsync((new DetalheView(veiculo, this.Usuario)));
+            });
+
+            MessagingCenter.Subscribe<Exception>(this, "FalhaGetVeiculos", (ex) =>
             {
                 DisplayAlert("Erro", "Ocorreu um erro ao tentar obter a lista de veículos. Por favor, tente novamente mais tarde", "OK");
             });
-            await this.View.GetVeiculos();
-            base.OnAppearing();
         }
 
         // Remove a inscrição na mensageria ao sair da página
         protected override void OnDisappearing()
         {
+            CancelarAssinatura();
+            base.OnDisappearing();
+        }
+
+        private void CancelarAssinatura()
+        {
             MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
             MessagingCenter.Unsubscribe<Exception>(this, "FalhaGetVeiculos");
-            base.OnDisappearing();
         }
     }
 }

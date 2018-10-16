@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="carros_2.views.MasterDetailView"
              xmlns:view="clr-namespace:carros_2.views">
-    <MasterDetailPage.Detail>
-        <NavigationPage>
-            <x:Arguments>
-                <view:CarrosView></view:CarrosView>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
 </MasterDetailPage>
