@@ -34,6 +34,7 @@
                         </TableRoot>
                     </TableView>
                     <Button Text="Salvar" Command="{Binding SalvarPerfilCommand}" IsVisible="{Binding Editando}"></Button>
+                    <Button Text="Meus Agendamentos" Command="{Binding MeusAgendamentosCommand}" ></Button>
                 </StackLayout>
             </Frame>
         </ContentPage>

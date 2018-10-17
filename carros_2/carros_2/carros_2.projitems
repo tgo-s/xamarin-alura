@@ -39,6 +39,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\MasterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\VeiculoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)viewmodel\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)views\AgendamentosUsuarioView.xaml.cs">
+      <DependentUpon>AgendamentosUsuarioView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)views\AgendamentoView.xaml.cs">
       <DependentUpon>AgendamentoView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,5 +112,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)config.json.sample.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)views\AgendamentosUsuarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

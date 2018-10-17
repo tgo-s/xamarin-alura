@@ -22,6 +22,7 @@ namespace carros_2.viewmodel
         public MasterViewModel(Usuario usuario)
         {
             this.usuario = usuario;
+            AssinarMensagens();
             DefinirComandos(usuario);
         }
 
@@ -30,7 +31,7 @@ namespace carros_2.viewmodel
             EditarPerfilCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "EditarPerfil");
-                
+
             });
 
             SalvarPerfilCommand = new Command(() =>
@@ -38,11 +39,19 @@ namespace carros_2.viewmodel
                 MessagingCenter.Send<Usuario>(usuario, "SalvarPerfil");
             });
 
-            TirarFotoCommand = new Command(() => 
+            TirarFotoCommand = new Command(() =>
             {
                 DependencyService.Get<ICamera>().TirarFoto();
             });
 
+            MeusAgendamentosCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "MeusAgendamentos");
+            });
+        }
+
+        private void AssinarMensagens()
+        {
             // Alteração para Bytes para não ter que usara  Java.IO.File
 
             //MessagingCenter.Subscribe<Java.IO.File>(this, "Foto", (imagem) =>
@@ -102,6 +111,6 @@ namespace carros_2.viewmodel
         public ICommand EditarPerfilCommand { get; private set; }
         public ICommand SalvarPerfilCommand { get; private set; }
         public ICommand TirarFotoCommand { get; private set; }
-
+        public ICommand MeusAgendamentosCommand { get; private set; }
     }
 }
